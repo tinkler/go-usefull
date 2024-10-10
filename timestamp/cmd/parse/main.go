@@ -21,8 +21,8 @@ func main() {
 		printInfo(fmt.Sprintf("Parse: %d, %s, %s", aurora.Green(tt), aurora.Yellow(t.Format(time.RFC3339)), aurora.Cyan(t.UTC().Format(time.RFC3339))))
 		return
 	}
-	if t, err := time.Parse("2006-01-02 15:04:05", args[1]); err == nil {
-		printInfo(fmt.Sprintf("Parse: %d, %s, %s", aurora.Green(t.Unix()), aurora.Yellow(t.Format(time.RFC3339)), aurora.Cyan(t.UTC().Format(time.RFC3339))))
+	if t, err := time.ParseInLocation("2006-01-02 15:04:05", args[1], time.UTC); err == nil {
+		printInfo(fmt.Sprintf("Parse: %d, %s, %s", aurora.Green(t.Unix()), aurora.Yellow(t.Local().Format(time.RFC3339)), aurora.Cyan(t.Format(time.RFC3339))))
 		return
 	} else {
 		printInfo(fmt.Sprintf("Error: %s\n", aurora.Red(err)))
